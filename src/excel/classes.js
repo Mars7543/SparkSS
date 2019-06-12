@@ -30,6 +30,7 @@ class SparkStudent {
         this.firstname  = firstname
         this.lastname   = lastname
         this.town       = town
+        this.knownStudents = knownStudents
     }
 
     //group = groupMaker();
