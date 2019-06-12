@@ -45,14 +45,28 @@ class Group {
         this.female_count = 0
         this.male_count = 0
         this.gender_disparity = 0
+
+        this.academy_count = {
+            'ATCS': 0,
+            'AMST': 0,
+            'ABFIB': 0,
+            'AAST': 0,
+            'AEDT': 0,
+            'ACHA': 0,
+            'AVPA/T': 0,
+            'AVPA/M': 0,
+            'AVPA/V': 0
+        }
     }
 
     /**
      * Adds a student to the group list
-     * Also updates gender-related variables
+     * Also updates gender & academy related variables
      */
     addStudent(student){
         this.students.push(student)
+
+        this.academy_count[student.academy]++
         
         if (student.gender === 'Male')
             this.male_count++
@@ -79,7 +93,7 @@ class Group {
         const space = this.students.length < this.group_length
         const eligible = this.students.every((current_student) => !((student.academy === current_student.academy) && (student.gender === current_student.gender)))
 
-        return space && eligible && (this.gender_disparity <= 2)
+        return space && eligible && (this.gender_disparity < 2)
     }
 }
 

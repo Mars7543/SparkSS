@@ -28,6 +28,7 @@ const makeGroups = async () => {
         }
 
         let group_index = 0
+        let students_on_hold = []
         Object.values(freshmen).forEach((academy) => {
             academy.forEach((student) => {
                 let temp_group = groups[group_index]
@@ -37,35 +38,37 @@ const makeGroups = async () => {
                     group_index = (++group_index) % spark_leaders.length
                 } else {
                     let temp_index = group_index
+                    let addable = true
                     while (!temp_group.checkEligibility(student)) {
                         group_index = (++group_index) % spark_leaders.length
                         temp_group = groups[group_index]
 
                         if (temp_index === group_index) { // if every group was checked --> add student to group with least # of students
-                            
-                            for (let i = 0; i < groups.length; i++) {
+                            // students_on_hold.push(student)
+                            // addable = false
+                            // break
+                            for (let i = 0; i < groups.length; i++) 
                                 if (groups[group_index].getSpace() < groups[i].getSpace())
                                     group_index = i
-                                else if (groups[group_index].getSpace() == groups[i].getSpace()) // if space is equal check for lower gender disparity
-                                    if (groups[group_index].gender_disparity > groups[i].gender_disparity)
-                                        group_index = i 
-                            }
                             
                             break
                         }
                     }
 
-                    groups[group_index].addStudent(student)
+                    if (addable) groups[group_index].addStudent(student)
                 }
             })
         })
 
+        // console.log(students_on_hold.length)
         groups.forEach((group) => {
-            console.log(`\n${group.leader.firstname + " " + group.leader.lastname}'s group:\n`)
-            console.log('\t' + group.male_count + " |  " + group.female_count)
-            // group.students.forEach((student) => {
-            //     console.log("\t" + student.academy + " | " + student.gender)
-            // })
+            if (group.gender_disparity > 3) {
+                console.log(`\n${group.leader.firstname + " " + group.leader.lastname}'s group:\n`)
+                // console.log('\t' + group.male_count + " |  " + group.female_count)
+                group.students.forEach((student) => {
+                    console.log("\t" + student.academy + " | " + student.gender)
+                })
+            }
         })
 
     } catch (e) {
