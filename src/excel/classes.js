@@ -17,6 +17,14 @@ class Student {
     }
 }
 
+
+/**
+Constraints:
+   - Even # of males to females
+   - Good spread of academies (max 2 of one academy)
+   - Good spread of towns (including spark leader)
+   - Roughly same amnt of ppl per group (# of students / # of spark leaders) : 1 spark leader / group
+**/
 class SparkStudent {
     constructor(academy, firstname, lastname, town, knownStudents) {
         this.academy    = academy
@@ -28,18 +36,4 @@ class SparkStudent {
     group = groupMaker();
 }
 
-/**
-Constraints:
-   - Even # of males to females
-   - Good spread of academies (max 2 of one academy)
-   - Good spread of towns (including spark leader)
-   - Roughly same amnt of ppl per group (# of students / # of spark leaders) : 1 spark leader / group
-**/
-
-class Group {
-    constructor() {
-
-    }
-}
-
-module.exports = { SparkStudent, Student, Group }
+module.exports = { SparkStudent, Student}
