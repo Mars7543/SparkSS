@@ -43,8 +43,18 @@ class Group {
         this.leader = leader
     }
 
+    /**
+     * Adds a student to the group list
+     */
     addStudent(student){
         this.students.push(student)
+    }
+
+    /**
+     * Returns the amount of slots left for students
+     */
+    getSpace(){
+        return group_length - this.students.length
     }
 
     /**
