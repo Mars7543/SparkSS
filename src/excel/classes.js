@@ -14,6 +14,13 @@ class Student {
         this.zip        = zip
     }
 
+    /**
+     * Simple .equals() function 
+     */
+    equals(student) {
+        return (this.academy === student.academy) && (this.gender === student.gender) && (this.firstname === student.firstname) && (this.lastname === student.lastname) && (this.address === student.address) && (this.town === student.town) && (this.zip === student.zip)
+    }
+
 }
 
 /**
@@ -74,6 +81,22 @@ class Group {
             this.female_count++
 
         this.gender_disparity = Math.abs(this.male_count - this.female_count)
+    }
+    
+    /**
+     * swapStudents takes a group and a student, where the student is in th group that calls the function.
+     * It then swaps that student with one from the group passed in, which is a group separate from the current one.
+     */
+    swapStudents(outgoing_student, group, incoming_student) {
+        this.students.forEach((student, index) => {
+            if (student.equals(outgoing_student))
+                this.students[index] = incoming_student
+        })
+
+        group.students.forEach((student, index) => {
+            if(student.equals(incoming_student))
+                group.students[index] = outgoing_student
+        })
     }
 
     /**
