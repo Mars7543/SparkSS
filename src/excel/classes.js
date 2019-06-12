@@ -54,7 +54,7 @@ class Group {
      * Returns the amount of slots left for students
      */
     getSpace(){
-        return group_length - this.students.length
+        return this.group_length - this.students.length
     }
 
     /**
