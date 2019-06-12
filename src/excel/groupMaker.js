@@ -3,28 +3,22 @@ const { getFreshmen, getSparkLeaders } = require('./parse')
 const makeGroups = async () => {
     try {
         const freshmen = await getFreshmen()
-        const sparkLeaders = await getSparkLeaders()
+        const sparkLeaders =  await getSparkLeaders()
 
         let totalFreshman = 0
         Object.values(freshmen).forEach((academy) => {
             totalFreshman += academy.length
         })
 
-        // a = # of freshman (288) b = # of spark leaders (33
-        // x = # of groups w 8 | y = # of groups w 9
+        const avg_group_size = totalFreshman / sparkLeaders.length
+        let num_people_lower = Math.floor(avg_group_size)
+        let num_people_higher = Math.ceil(avg_group_size)
 
-        // x + y = b
-        // 8x + 9y = 288
-
-        // 9x + 9y = 297
-        // 8x + 9y = 288
-        // x       = 9
-        // y       = 33 - x = 24
-
-        avg_group_size = Math.floor(totalFreshman / sparkLeaders.length)
-        group_of_ags = Math.floor(totalFreshman / avg_group_size)
-        group_of_ags_plus_1 = sparkLeaders.length - (totalFreshman % sparkLeaders.length)
-        console.log(avg_group_size, group_of_ags, group_of_ags_plus_1)
+        let num_higher_groups = Math.round(sparkLeaders.length * (avg_group_size - num_people_lower))
+        let num_lower_groups  = sparkLeaders.length - num_higher_groups
+        
+        console.log(num_people_lower, num_people_higher, num_lower_groups, num_higher_groups)
+    
 
     } catch (e) {
         console.log(e)
