@@ -64,6 +64,9 @@ class Group {
             'AVPA/M': 0,
             'AVPA/V': 0
         }
+
+        this.strong_presence = []
+        this.weak_presence   = []
     }
 
     /**
@@ -115,8 +118,8 @@ class Group {
     checkEligibility(student){
         const space = this.students.length < this.group_length
         const eligible = this.students.every((current_student) => !((student.academy === current_student.academy) && (student.gender === current_student.gender)))
-
-        return space && eligible && (this.gender_disparity < 2)
+        const academy_check = this.academy_count[student.academy] < 2
+        return space && eligible && (this.gender_disparity < 2) && academy_check
     }
 }
 
