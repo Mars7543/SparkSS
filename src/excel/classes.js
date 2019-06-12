@@ -44,18 +44,22 @@ class Group {
         this.leader = leader
         this.female_count = 0
         this.male_count = 0
+        this.gender_disparity = 0
     }
 
     /**
      * Adds a student to the group list
-     * Also increments female_count and male_count for the group
+     * Also updates gender-related variables
      */
     addStudent(student){
         this.students.push(student)
-        if (this.student.gender === 'Male')
+        
+        if (student.gender === 'Male')
             this.male_count++
         else
             this.female_count++
+
+        this.gender_disparity = Math.abs(this.male_count - this.female_count)
     }
 
     /**
@@ -72,14 +76,11 @@ class Group {
      * Also checks if there is space in the group using group_length.
      */
     checkEligibility(student){
-        const genderDisparity = Math.abs(this.female_count-this.male_count) > 2
         const space = this.students.length < this.group_length
         const eligible = this.students.every((current_student) => !((student.academy === current_student.academy) && (student.gender === current_student.gender)))
 
-        return space && eligible && !genderDisparity
+        return space && eligible && (this.gender_disparity <= 2)
     }
-
-
 }
 
 module.exports = { SparkStudent, Student, Group}

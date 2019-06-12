@@ -19,7 +19,7 @@ module.exports.getFreshmen = async () => {
             'AVPA/M': [],
             'AVPA/V': []
         }
-
+        
         student_data.forEach((student, index) => {            
             if (index == 0) return // skip over headers row
 
