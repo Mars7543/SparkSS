@@ -51,10 +51,16 @@ class Group {
      * This method compares to students to determine if the student passed in is eligible for the group.
      * It will return false if student is not eligible and true if student is eligible.
      * The comparison is based off of academy and gender.
+     * Also checks if there is space in the group using group_length.
      */
     checkEligibility(student){
-        return this.students.every((current_student) => !((student.academy === current_student.academy) && (student.gender === current_student.gender)))
+        const space = this.students.length < this.group_length
+        const eligible = this.students.every((current_student) => !((student.academy === current_student.academy) && (student.gender === current_student.gender)))
+
+        return space && eligible
     }
+
+
 }
 
 module.exports = { SparkStudent, Student, Group}
