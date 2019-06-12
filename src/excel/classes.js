@@ -32,7 +32,7 @@ class SparkStudent {
         this.town       = town
     }
 
-    group = groupMaker();
+    //group = groupMaker();
 }
 
 module.exports = { SparkStudent, Student}
