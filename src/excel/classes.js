@@ -42,6 +42,10 @@ class Group {
         this.group_length = group_length
         this.leader = leader
     }
+
+    addStudent(student){
+        this.students.push(student)
+    }
 }
 
 module.exports = { SparkStudent, Student, Group}
