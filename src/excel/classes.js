@@ -17,18 +17,6 @@ class Student {
     }
 }
 
-<<<<<<< HEAD
-class SparkStudent {
-    constructor(academy, firstname, lastname, town, knownStudents) {
-        this.academy    = academy
-        this.firstname  = firstname
-        this.lastname   = lastname
-        this.town       = town
-    }
-}
-=======
->>>>>>> 08fbf8c48526235a0461cd250affa97d0eaad3fe
-
 /**
 Constraints:
    - Even # of males to females
