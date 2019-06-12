@@ -46,6 +46,12 @@ class Group {
     addStudent(student){
         this.students.push(student)
     }
+
+    compareStudent(student){
+        const a = this.students.every((current_student) => !((student.academy === current_student.academy) && (student.gender === current_student.gender)))
+
+        console.log(a)
+    }
 }
 
 module.exports = { SparkStudent, Student, Group}
