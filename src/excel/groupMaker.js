@@ -16,8 +16,8 @@ const makeGroups = async () => {
 
         let num_higher_groups = Math.round(sparkLeaders.length * (avg_group_size - num_people_lower))
         let num_lower_groups  = sparkLeaders.length - num_higher_groups
-        
-        console.log(num_people_lower, num_people_higher, num_lower_groups, num_higher_groups)
+
+        //console.log(num_people_lower, num_people_higher, num_lower_groups, num_higher_groups)
     
 
     } catch (e) {

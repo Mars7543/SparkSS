@@ -1,5 +1,3 @@
-const groupMaker = require("./groupMaker")
-
 class Student {
     /**
         * Constructor for the student object.
@@ -25,15 +23,25 @@ Constraints:
    - Roughly same amnt of ppl per group (# of students / # of spark leaders) : 1 spark leader / group
 **/
 class SparkStudent {
-    constructor(academy, firstname, lastname, town, knownStudents) {
+    constructor(academy, firstname, lastname, town, known_students) {
         this.academy    = academy
         this.firstname  = firstname
         this.lastname   = lastname
         this.town       = town
-        this.knownStudents = knownStudents
+        this.known_students = known_students
     }
 
-    //group = groupMaker();
+    addGroup(group){
+        this.group = group
+    }
 }
 
-module.exports = { SparkStudent, Student}
+class Group {
+    constructor(group_length, leader){
+        this.students = []
+        this.group_length = group_length
+        this.leader = leader
+    }
+}
+
+module.exports = { SparkStudent, Student, Group}
