@@ -18,7 +18,6 @@ class Student {
 class SparkStudent {
     constructor(academy, firstname, lastname, town, knownStudents) {
         this.academy    = academy
-        this.gender     = gender
         this.firstname  = firstname
         this.lastname   = lastname
         this.town       = town

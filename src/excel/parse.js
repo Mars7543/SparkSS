@@ -1,27 +1,58 @@
-const { Student }   = require('./classes')
-const readXlsxFile  = require('read-excel-file/node')
-const path          = require('path')
-const freshmanList  = path.join(__dirname, '..', '..', 'public', 'assets', 'freshmanList.xlsx')
+const { Student, SparkStudent } = require('./classes')
+const readXlsxFile              = require('read-excel-file/node')
 
-module.exports = async () => {
+module.exports = async (pathToFile, studentType) => {
     try {
-        freshmen_data = await readXlsxFile(freshmanList)
-        freshmen = []
+        student_data = await readXlsxFile(pathToFile)
+        
+        students = {
+            'ATCS': [],
+            'AMST': [],
+            'ABFIB': [],
+            'AAST': [],
+            'AEDT': [],
+            'ACHA': [],
+            'AVPA/T': [],
+            'AVPA/M': [],
+            'AVPA/V': []
+        }
 
-        freshmen_data.forEach((freshman, index) => {
+        student_data.forEach((student, index) => {            
             if (index == 0 || index > 3) return // skip over headers row
 
-            const [ academy, gender, name ] = freshman
-            const [ lastName, firstName ] = name.split(', ')
+            if (studentType === 'Freshman') {
+                const [ academy, gender, name ] = student
+                const [ lastName, firstName ] = name.split(', ')
 
-            const address = freshman[8]
-            const town = freshman[9]
-            const zip = freshman[10]
+                const address = student[8]
+                const town = student[9]
+                const zip = student[10]
 
-            freshmen.push(new Student(academy, gender, firstName, lastName, address, town, zip))
+                students[academy].push(new Student(academy, gender, firstName, lastName, address, town, zip))
+            } else if (studentType === 'Spark Leader') {
+                const [ academy, name, town, knownStudents ] = student
+                const [ lastName, firstName ] = name.split(', ')
+
+                if (knownStudents) {
+                    tempStudents = []
+                    knownStudents = knownStudents.split(':')
+                    
+                    knownStudents.forEach((freshman) => {
+                        const [ freshman_lastName, freshman_firstName ] = freshman
+                    })
+                }
+
+                // if (knownStudents)
+                //     knownFreshmen = knownStudents.split(':')
+
+                // if (typeof knownFreshmen !== 'undefined')
+                //     console.log(knownFreshmen)
+
+                students.push(new SparkStudent(academy, firstName, lastName, town, null))
+            }
         })
 
-        return freshmen
+        return students
     } catch (e) {
         throw new Error(e)
     }
