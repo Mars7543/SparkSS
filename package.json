@@ -6,7 +6,8 @@
   "dependencies": {
     "ejs": "^2.6.1",
     "express": "^4.17.1",
-    "read-excel-file": "^4.0.1"
+    "read-excel-file": "^4.0.1",
+    "table": "^5.4.0"
   },
   "devDependencies": {},
   "scripts": {

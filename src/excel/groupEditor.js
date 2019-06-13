@@ -1,39 +1,42 @@
 const makeGroups = require('./groupMaker')
 
-const editGroups = async () => {
-    let groups = await makeGroups()
+module.exports.editGroups = async () => {
+    try {
+        let groups = await makeGroups()
+        return groups
+    } catch (e) {
+        console.log(e)
+    }
 
-    let male_disparities    = 0
-    let female_disparities  = 0
+    // let male_disparities    = 0
+    // let female_disparities  = 0
 
-    let disparity           = ''
-    let disparity_groups    = []
-    let rest                = []
+    // let disparity           = ''
+    // let disparity_groups    = []
+    // let rest                = []
 
-    groups.forEach((group) => {
-        if (group.male_disparity > 0) 
-            male_disparities++
-        else if (group.female_disparity > 0)
-            female_disparities++
-    })
+    // groups.forEach((group) => {
+    //     if (group.male_disparity > 0) 
+    //         male_disparities++
+    //     else if (group.female_disparity > 0)
+    //         female_disparities++
+    // })
 
-    if (male_disparities > female_disparities) 
-        disparity_type = 'male_disparity'
+    // if (male_disparities > female_disparities) 
+    //     disparity_type = 'male_disparity'
     
-    else if (female_disparities >= male_disparities) 
-        disparity_type = 'female_disparity'
+    // else if (female_disparities >= male_disparities) 
+    //     disparity_type = 'female_disparity'
 
-    groups.forEach((group) => {
-        if (group[disparity_type] > 0) disparity_groups.push(group)
-        else rest.push(group)
-    })
+    // groups.forEach((group) => {
+    //     if (group[disparity_type] > 0) disparity_groups.push(group)
+    //     else rest.push(group)
+    // })
 
-    rest.sort((groupA, groupB) => {
-        if (groupA[disparity_type] > groupB[disparity_type]) return 1
-        else return -1
-    })
-
-    rest.forEach((group) => console)
+    // rest.sort((groupA, groupB) => {
+    //     if (groupA[disparity_type] > groupB[disparity_type]) return 1
+    //     else return -1
+    // })
 
     /**
      * sort the groups without a male disparity based on how many extra females there are 
@@ -56,9 +59,9 @@ const editGroups = async () => {
     // groups.forEach((group) => {
     //     console.log(`\n${group.leader.firstname + " " + group.leader.lastname}'s group:\n`)
     //     console.log('\t' + group.male_count + " |  " + group.female_count)
-    //     // group.students.forEach((student) => {
-    //     //     console.log("\t" + student.academy + " | " + student.gender)
-    //     // })
+    //     group.students.forEach((student) => {
+    //         console.log("\t" + student.academy + " | " + student.gender)
+    //     })
     // })
 
     
@@ -73,6 +76,8 @@ const editGroups = async () => {
     //         console.log(academy_count[1])
     //     })
     // })
+
+    return groups
 }
 
 editGroups()
